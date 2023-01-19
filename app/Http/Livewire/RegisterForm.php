@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Register;
 use Livewire\Component;
+use Illuminate\Contracts\Validation\Validator;
 
 class RegisterForm extends Component
 {
@@ -24,8 +25,9 @@ class RegisterForm extends Component
     public $file;
 
 
+
     protected $rules = [
-        'nameOrganization' => 'required|regex:/[a-zA-Zа-яА-ЯЁёҚқӘәҺһІіҢңҒғҰұӨө\s]/ui',
+        'nameOrganization' => 'required|regex:/[0-9a-zA-Zа-яА-ЯЁёҚқӘәҺһІіҢңҒғҰұӨө\s]/ui',
         'legalAdress' => 'required|regex:/[a-zA-Zа-яА-ЯЁёҚқӘәҺһІіҢңҒғҰұӨө\s]/ui',
         'postcode' => 'required|numeric',
         'number' => 'required|numeric',
@@ -39,8 +41,29 @@ class RegisterForm extends Component
         'responsemail' => 'required|email',
         'name' => 'required|regex:/[а-яА-ЯЁёҚқӘәҺһІіҢңҒғҰұӨө\s]/ui',
         'domain' => 'required|alpha_dash',
-        'file' => 'required|file',
+        'file' => 'file|mimes:pdf',
+
     ];
+
+    protected $messages = [
+        'nameOrganization.required' => 'Заполните поле :attribute.',
+        'nameOrganization.regex' => 'Значение поля неверно. Поле может содержать только цифровые символы символы латиницы, кирилицы, казахские символы и символы «» , . \ - # № @ & (). Пример: ТОО RS Solutions',
+
+        'legalAdress.required' => 'Заполните поле :attribute.',
+        'legalAdress.regex' => 'Значение поля неверно. Поле может содержать только цифровые символы символы латиницы, кирилицы, казахские символы и символы «» , . \ - # № @ & (). Пример: ТОО RS Solutions',
+        'postcode.required' => 'Необходимо заполнить :attribute.',
+        'postcode.numeric' => 'Значение «» должно быть числом.',
+
+    ];
+
+
+
+    protected $validationAttributes = [
+        'nameOrganization' => 'Название организации ',
+        'legalAdress' => 'Юридический адрес',
+        'postcode' => 'Почтовый индекс',
+    ];
+
 
 
 
@@ -56,7 +79,10 @@ class RegisterForm extends Component
 
         Register::create($validatedData);
 
+
+
         return redirect()->to('/message');
+
     }
 
     public function render()
