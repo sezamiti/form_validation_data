@@ -1,0 +1,27 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+
+.wrap {
+    background-color: #f8f4f1;
+}
+
+.top-wrap {
+    background-color: #f8f4f1;
+}
+
+section {
+    background-color: #f8f4f1;
+}
+
+.home-1 img.bg {
+    position: absolute;
+    bottom: 0;
+    left: calc(50% - 70px);
+}
