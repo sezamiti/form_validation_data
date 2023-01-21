@@ -74,11 +74,11 @@ return [
     'mac_address'          => 'The :attribute must be a valid MAC address.',
     'max'                  => [
         'array'   => 'The :attribute must not have more than :max items.',
-        'file'    => 'The :attribute must not be greater than :max kilobytes.',
+        'file'    => 'Не удалось загрузить следующие файлы: :input слишком большой. Размер не должен превышать 2.00 МБ.',
         'numeric' => 'The :attribute must not be greater than :max.',
         'string'  => 'The :attribute must not be greater than :max characters.',
     ],
-    'mimes'                => 'The :attribute must be a file of type: :values.',
+    'mimes'                => 'Нужен файл PDF',
     'mimetypes'            => 'The :attribute must be a file of type: :values.',
     'min'                  => [
         'array'   => 'The :attribute must have at least :min items.',

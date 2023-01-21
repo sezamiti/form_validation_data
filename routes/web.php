@@ -10,7 +10,7 @@ Route::get('/', function () {
 Route::get('/register', function () {
     return view('layouts/app');
 });
-//Route::post('/register', [\App\Http\Controllers\RegisterController::class, 'store']);
+//Route::post('/register', [\App\Http\Controllers\RegisterController::class, 'data']);
 
 
 
