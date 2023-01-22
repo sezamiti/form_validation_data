@@ -42,7 +42,7 @@
                 <div class="row">
                     <div class="col">
                         <label>Номер телефона организации</label>
-                        <input type="text"  class="form-control @error('number') is-invalid @else is-valid @enderror" placeholder="+ 777-777-77-77"
+                        <input type="tel"  class="form-control @error('number') is-invalid @else is-valid @enderror" placeholder="+7-777-77-77"
                                wire:model="number" value="{{old('number')}}">
                         @error('number')
                         <div class="small text-danger pb-1">
@@ -120,7 +120,7 @@
 
                     <div class="col">
                         <label>Телефон ответственного лица</label>
-                        <input type="text"  class="form-control @error('responsnumber') is-invalid @else is-valid @enderror" wire:model="responsnumber"
+                        <input type="tel"  class="form-control @error('responsnumber') is-invalid @else is-valid @enderror" wire:model="responsnumber"
                                value="{{old('responsnumber')}}">
                         @error('responsnumber')
                         <div class="small text-danger pb-1">

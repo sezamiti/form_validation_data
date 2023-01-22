@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire;
 
+use App\Mail\SendingMessage;
 use App\Models\Register;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -34,17 +36,17 @@ class RegisterForm extends Component
         'nameOrganization' => 'required|regex:/[0-9a-zA-Zа-яА-ЯЁёҚқӘәҺһІіҢңҒғҰұӨө\s]/ui',
         'legalAdress' => 'required|regex:/[0-9a-zA-Zа-яА-ЯЁёҚқӘәҺһІіҢңҒғҰұӨө\s]/ui',
         'postcode' => 'required|numeric',
-        'number' => 'required|numeric',
+        'number' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/',
         'email' => 'required|email',
         'bankName' => 'required|regex:/[0-9a-zA-Zа-яА-ЯЁёҚқӘәҺһІіҢңҒғҰұӨө\s]/ui',
         'bin' => 'required|digits:12',
         'bik' => 'required|min:8',
         'iik' => 'required|min:20',
         'responsPerson' => 'required|regex:/[a-zA-Zа-яА-ЯЁёҚқӘәҺһІіҢңҒғҰұӨө\s]/ui',
-        'responsnumber' => 'required|numeric',
+        'responsnumber' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/',
         'responsemail' => 'required|email',
         'name' => 'required|regex:/[a-zA-Zа-яА-ЯЁёҚқӘәҺһІіҢңҒғҰұӨө\s]/ui',
-        'domain' => 'required|alpha_dash',
+        'domain' => 'required|regex:/^(?!\-)(?:(?:[a-zA-Z\d][a-zA-Z\d\-]{0,61})?[a-zA-Z\d]\.){1,126}(?!\d+)[a-zA-Z\d]{1,63}$/',
         'file' => 'mimes:pdf|max:2048',
 
     ];
@@ -59,6 +61,7 @@ class RegisterForm extends Component
         'postcode.numeric' => 'Значение «:input» должно быть числом.',
         'number.required' => 'Необходимо заполнить «:attribute.».',
         'number.numeric' => 'Значение «:input» должно быть числом.',
+        'number.regex' => 'Значение «:input» должно быть числом.',
         'email.required' => 'Необходимо заполнить «:attribute».',
         'email.email' => 'Значение «:input» не является правильным email адресом.',
         'bankName.required' => 'Необходимо заполнить «:attribute».',
@@ -73,22 +76,18 @@ class RegisterForm extends Component
         'responsPerson.required' => 'Необходимо заполнить «:attribute».',
         'responsPerson.regex' => 'Значение поля неверно. Поле может содержать только символы латиницы, кирилицы, казахские символы. Пример: Иванов Иван Иванович',
         'responsnumber.required' => 'Необходимо заполнить «:attribute».',
-        'responsnumber.numeric' => 'Значение «:input*» должно быть числом.',
+        'responsnumber.regex' => 'Значение «:input*» должно быть числом.',
         'responsemail.required' => 'Необходимо заполнить «:attribute».',
         'responsemail.email' => 'Значение «» не является правильным email адресом.',
         'name.required' => 'Необходимо заполнить «:attribute».',
         'name.regex' => 'Значение поля неверно. Поле может содержать только символы латиницы, кирилицы, казахские символы. Пример: Иванов Иван Иванович',
         'domain.required' => 'Необходимо заполнить «желаемое название домена в зоне edu.kz , например: название организации.edu.kz*».',
+        'domain.regex' => 'Необходимо заполнить «желаемое название домена в зоне edu.kz , например: название организации.edu.kz*».',
         'file.required' => 'вставьте pdf файл',
         'file.mimes' => 'нужен файл pdf',
         'file.max' => 'Не удалось загрузить следующие файлы: :input слишком большой. Размер не должен превышать 2.00 МиБ.',
 
     ];
-
-
-
-
-
 
     protected $validationAttributes = [
         'nameOrganization' => 'Название организации ',
@@ -120,6 +119,7 @@ class RegisterForm extends Component
 
         Register::create($validatedData);
 
+        Mail::to('sezam@mail.kz')->send(new SendingMessage($this->nameOrganization,$this->legalAdress,$this->postcode,$this->number,$this->email,$this->bankName,$this->bin,$this->iik,$this->bik,$this->responsPerson,$this->responsnumber,$this->responsemail,$this->name ,$this->domain,$this->file  ));
 
 
         return redirect()->to('/message');
