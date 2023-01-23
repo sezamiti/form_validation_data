@@ -16,21 +16,18 @@
     <div class="d-flex flex-row">
         <img class="bg-warning rounded-pill" src="{{asset('img/person.svg')}}" alt="">
         <a class="p-2" href="/">Главная</a>
-        <a class="p-2" href="/register">Регистрация</a>
+        <a class="p-2" href="/">Регистрация</a>
     </div>
 </div>
 
 
-
 @livewire('register-form')
-
-
 
 
 @include('home-1')
 
 
 @include('footer')
-<livewire:scripts />
+<livewire:scripts/>
 </body>
 </html>

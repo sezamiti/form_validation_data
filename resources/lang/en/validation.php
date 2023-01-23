@@ -74,7 +74,7 @@ return [
     'mac_address'          => 'The :attribute must be a valid MAC address.',
     'max'                  => [
         'array'   => 'The :attribute must not have more than :max items.',
-        'file'    => 'Не удалось загрузить следующие файлы: :input слишком большой. Размер не должен превышать 2.00 МБ.',
+        'file'    => 'Не удалось загрузить. Файл слишком большой. Размер не должен превышать 2.00 МБ.',
         'numeric' => 'The :attribute must not be greater than :max.',
         'string'  => 'The :attribute must not be greater than :max characters.',
     ],

@@ -13,7 +13,6 @@ class RegisterForm extends Component
     use WithFileUploads;
 
 
-
     public $nameOrganization;
     public $legalAdress;
     public $postcode;
@@ -29,7 +28,6 @@ class RegisterForm extends Component
     public $name;
     public $domain;
     public $file;
-
 
 
     protected $rules = [
@@ -50,6 +48,7 @@ class RegisterForm extends Component
         'file' => 'mimes:pdf|max:2048',
 
     ];
+
 
     protected $messages = [
         'nameOrganization.required' => 'Заполните поле :attribute.',
@@ -106,27 +105,30 @@ class RegisterForm extends Component
     ];
 
 
-
     public function updated($propertyName)
     {
         $this->validateOnly($propertyName);
+
     }
 
 
     public function submit()
     {
+
+
+        $filename= $this->file->getClientOriginalName();
+
         $validatedData = $this->validate();
 
 
         Register::create($validatedData);
 
-        Mail::to('dossumbekov@list.ru')->send(new SendingMessage($this->nameOrganization,$this->legalAdress,$this->postcode,$this->number,$this->email,$this->bankName,$this->bin,$this->iik,$this->bik,$this->responsPerson,$this->responsnumber,$this->responsemail,$this->name ,$this->domain,$this->file));
+        Mail::to('dossumbekov@list.ru')->send(new SendingMessage($this->nameOrganization, $this->legalAdress, $this->postcode, $this->number, $this->email, $this->bankName, $this->bin, $this->iik, $this->bik, $this->responsPerson, $this->responsnumber, $this->responsemail, $this->name, $this->domain, $this->file));
 
-
+//        session()->get('pdfName');
         return redirect()->to('/message');
 
     }
-
 
 
     public function render()

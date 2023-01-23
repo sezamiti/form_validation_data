@@ -7,13 +7,6 @@ Route::get('/', function () {
     return view('layouts/app');
 })->name('home');
 
-//Route::get('/register', function () {
-//    return view('layouts/app');
-//});
-
-
-
-
 
 //Route::get('/register', [\App\Http\Controllers\RegisterController::class, 'create'])->name('register')->name('register');
 //
