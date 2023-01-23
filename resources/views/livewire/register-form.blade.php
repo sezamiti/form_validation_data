@@ -1,3 +1,4 @@
+
 <form wire:submit.prevent="submit" class="needs-validation" method="post" enctype="multipart/form-data">
     <div class="container">
         <div class="wrap">

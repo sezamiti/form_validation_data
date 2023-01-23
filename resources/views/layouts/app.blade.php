@@ -21,10 +21,11 @@
 </div>
 
 
+
 @livewire('register-form')
 
 
-{{--@include('testbootstrap')--}}
+
 
 @include('home-1')
 

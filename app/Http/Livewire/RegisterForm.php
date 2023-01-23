@@ -117,9 +117,10 @@ class RegisterForm extends Component
     {
         $validatedData = $this->validate();
 
+
         Register::create($validatedData);
 
-        Mail::to('sezam@mail.kz')->send(new SendingMessage($this->nameOrganization,$this->legalAdress,$this->postcode,$this->number,$this->email,$this->bankName,$this->bin,$this->iik,$this->bik,$this->responsPerson,$this->responsnumber,$this->responsemail,$this->name ,$this->domain,$this->file  ));
+        Mail::to('dossumbekov@list.ru')->send(new SendingMessage($this->nameOrganization,$this->legalAdress,$this->postcode,$this->number,$this->email,$this->bankName,$this->bin,$this->iik,$this->bik,$this->responsPerson,$this->responsnumber,$this->responsemail,$this->name ,$this->domain,$this->file));
 
 
         return redirect()->to('/message');

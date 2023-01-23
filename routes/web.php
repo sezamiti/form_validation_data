@@ -7,10 +7,9 @@ Route::get('/', function () {
     return view('layouts/app');
 })->name('home');
 
-Route::get('/register', function () {
-    return view('layouts/app');
-});
-Route::post('/register', [\App\Http\Controllers\RegisterController::class, 'sendEmail'])->name('sendEmail');
+//Route::get('/register', function () {
+//    return view('layouts/app');
+//});
 
 
 
